@@ -35,7 +35,6 @@ export function Navbar() {
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Fetch user profile and notifications on user login
   useEffect(() => {
     if (user) {
       fetchProfile();
@@ -43,17 +42,16 @@ export function Navbar() {
     }
   }, [user]);
 
-  // Fetch Profile Information
   const fetchProfile = async () => {
     try {
       if (!user) return;
-      const { data: profileData, error: fetchError } = await supabase
+      const { data: profileData, error } = await supabase
         .from("profiles")
         .select("name, profile_image_url")
         .eq("id", user.id)
         .maybeSingle();
 
-      if (fetchError) throw fetchError;
+      if (error) throw error;
       setProfile(profileData);
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -65,7 +63,6 @@ export function Navbar() {
     }
   };
 
-  // Fetch Notifications
   const fetchNotifications = async () => {
     try {
       if (!user) return;
@@ -82,7 +79,6 @@ export function Navbar() {
     }
   };
 
-  // Manage Dark Mode State
   useEffect(() => {
     const savedMode = localStorage.getItem("theme");
     const isDark = savedMode === "dark";
@@ -186,24 +182,23 @@ export function Navbar() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-  <DropdownMenuItem onClick={() => navigate("/dashboard")}>
-    <FaTachometerAlt className="mr-2" />
-    Dashboard
-  </DropdownMenuItem>
-  <hr className="border-t border-gray-300" /> {/* Horizontal line */}
-  
-  <DropdownMenuItem onClick={() => navigate("/policy")}>
-    <FaFileAlt style={{ marginRight: '8px' }} />
-    Policy
-  </DropdownMenuItem>
-  <hr className="border-t border-gray-300" /> {/* Horizontal line */}
-  
-  <DropdownMenuItem onClick={handleLogout}>
-    <FaSignOutAlt className="mr-2" />
-    Logout
-  </DropdownMenuItem>
-</DropdownMenuContent>
-
+                <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                  <FaTachometerAlt className="mr-2" />
+                  Dashboard
+                </DropdownMenuItem>
+                <hr className="border-t border-gray-300" />
+                
+                <DropdownMenuItem onClick={() => navigate("/policy")}>
+                  <FaFileAlt style={{ marginRight: '8px' }} />
+                  Policy
+                </DropdownMenuItem>
+                <hr className="border-t border-gray-300" />
+                
+                <DropdownMenuItem onClick={handleLogout}>
+                  <FaSignOutAlt className="mr-2" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Button variant="ghost" onClick={() => navigate("/login")}>
