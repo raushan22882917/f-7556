@@ -1,0 +1,255 @@
+{
+  "introduction": "Hello, and welcome! My name is Sarah, and I’ll be your interviewer today. I’m excited to get to know you better through a series of questions that will help us understand your skills, experiences, and what drives you. Let’s dive in!",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Tell me about yourself and your background.",
+      "category": "Introduction"
+    },
+    {
+      "id": 2,
+      "question": "Why are you interested in joining {company_name}?",
+      "category": "Company Interest"
+    },
+    {
+      "id": 3,
+      "question": "What makes you a good fit for the {position} role?",
+      "category": "Role Fit"
+    },
+    {
+      "id": 4,
+      "question": "What are your key strengths and how would they benefit {company_name}?",
+      "category": "Skills"
+    },
+    {
+      "id": 5,
+      "question": "Where do you see yourself in five years at {company_name}?",
+      "category": "Career Goals"
+    },
+    {
+      "id": 6,
+      "question": "What do you know about {company_name} and its values?",
+      "category": "Company Knowledge"
+    },
+    {
+      "id": 7,
+      "question": "Why are you looking to leave your current position?",
+      "category": "Career Transition"
+    },
+    {
+      "id": 8,
+      "question": "Can you describe a time when you faced a challenge at work and how you overcame it?",
+      "category": "Problem-Solving"
+    },
+    {
+      "id": 9,
+      "question": "How do you handle stress or pressure in a work environment?",
+      "category": "Stress Management"
+    },
+    {
+      "id": 10,
+      "question": "What motivates you to do your best work?",
+      "category": "Motivation"
+    },
+    {
+      "id": 11,
+      "question": "How do you prioritize your work tasks when dealing with multiple deadlines?",
+      "category": "Time Management"
+    },
+    {
+      "id": 12,
+      "question": "Describe a time when you worked successfully within a team.",
+      "category": "Teamwork"
+    },
+    {
+      "id": 13,
+      "question": "How do you stay organized and ensure that you meet deadlines?",
+      "category": "Organization"
+    },
+    {
+      "id": 14,
+      "question": "Tell me about a situation where you had to give or receive constructive feedback.",
+      "category": "Feedback Handling"
+    },
+    {
+      "id": 15,
+      "question": "What are your salary expectations for this role?",
+      "category": "Salary Expectations"
+    },
+    {
+      "id": 16,
+      "question": "How do you handle criticism from your peers or managers?",
+      "category": "Self-Improvement"
+    },
+    {
+      "id": 17,
+      "question": "What do you enjoy doing outside of work?",
+      "category": "Personal Interests"
+    },
+    {
+      "id": 18,
+      "question": "How do you balance your professional and personal life?",
+      "category": "Work-Life Balance"
+    },
+    {
+      "id": 19,
+      "question": "What would your previous manager or colleagues say about you?",
+      "category": "Peer Insights"
+    },
+    {
+      "id": 20,
+      "question": "What are your expectations from a work environment and company culture?",
+      "category": "Cultural Fit"
+    },
+    {
+      "id": 21,
+      "question": "How do you approach decision-making when faced with difficult choices?",
+      "category": "Decision-Making"
+    },
+    {
+      "id": 22,
+      "question": "Tell me about a time when you had to learn something new quickly.",
+      "category": "Learning Agility"
+    },
+    {
+      "id": 23,
+      "question": "How do you stay updated with industry trends and advancements?",
+      "category": "Professional Development"
+    },
+    {
+      "id": 24,
+      "question": "What would you do if you disagreed with your manager’s decision?",
+      "category": "Conflict Resolution"
+    },
+    {
+      "id": 25,
+      "question": "Do you have any questions for me about the role or company?",
+      "category": "Closing Questions"
+    },
+    {
+      "id": 26,
+      "question": "How do you handle multitasking in high-pressure situations?",
+      "category": "Multitasking"
+    },
+    {
+      "id": 27,
+      "question": "What do you think are the most important qualities for a successful leader?",
+      "category": "Leadership"
+    },
+    {
+      "id": 28,
+      "question": "Can you give an example of a project where you demonstrated strong leadership skills?",
+      "category": "Leadership"
+    },
+    {
+      "id": 29,
+      "question": "How do you deal with ambiguity in the workplace?",
+      "category": "Adaptability"
+    },
+    {
+      "id": 30,
+      "question": "What are your hobbies or passions outside of work, and how do they help you professionally?",
+      "category": "Personal Interests"
+    },
+    {
+      "id": 31,
+      "question": "Can you describe a situation where you had to collaborate with a difficult colleague?",
+      "category": "Team Collaboration"
+    },
+    {
+      "id": 32,
+      "question": "How do you define success in your career?",
+      "category": "Career Aspirations"
+    },
+    {
+      "id": 33,
+      "question": "What makes you unique compared to other candidates applying for this role?",
+      "category": "Unique Qualities"
+    },
+    {
+      "id": 34,
+      "question": "Describe a time when you had to work under tight deadlines and how you managed your tasks.",
+      "category": "Time Management"
+    },
+    {
+      "id": 35,
+      "question": "How do you stay motivated when working on repetitive tasks?",
+      "category": "Motivation"
+    },
+    {
+      "id": 36,
+      "question": "What do you think are the biggest challenges facing our industry right now?",
+      "category": "Industry Awareness"
+    },
+    {
+      "id": 37,
+      "question": "How would you handle a situation where you do not agree with the company’s policies?",
+      "category": "Ethics and Integrity"
+    },
+    {
+      "id": 38,
+      "question": "Have you ever failed to meet a goal or deadline? How did you handle the situation?",
+      "category": "Failure and Accountability"
+    },
+    {
+      "id": 39,
+      "question": "How do you motivate others in a team setting?",
+      "category": "Team Motivation"
+    },
+    {
+      "id": 40,
+      "question": "What do you value most in a team environment?",
+      "category": "Teamwork"
+    },
+    {
+      "id": 41,
+      "question": "How do you make decisions when the available data is incomplete or ambiguous?",
+      "category": "Decision-Making"
+    },
+    {
+      "id": 42,
+      "question": "Describe a time when you had to make a tough decision at work and the outcome.",
+      "category": "Decision-Making"
+    },
+    {
+      "id": 43,
+      "question": "How do you handle repetitive tasks or routine duties that may be less exciting?",
+      "category": "Motivation"
+    },
+    {
+      "id": 44,
+      "question": "What steps do you take to ensure continuous improvement in your performance?",
+      "category": "Self-Improvement"
+    },
+    {
+      "id": 45,
+      "question": "Have you ever had to lead a project or team? How did you manage the responsibilities?",
+      "category": "Leadership"
+    },
+    {
+      "id": 46,
+      "question": "How do you handle conflicts or disagreements in the workplace?",
+      "category": "Conflict Resolution"
+    },
+    {
+      "id": 47,
+      "question": "What kind of work environment do you thrive in?",
+      "category": "Work Environment"
+    },
+    {
+      "id": 48,
+      "question": "If you could improve one thing about your previous job, what would it be?",
+      "category": "Job Satisfaction"
+    },
+    {
+      "id": 49,
+      "question": "What is your approach to maintaining a healthy work-life balance?",
+      "category": "Work-Life Balance"
+    },
+    {
+      "id": 50,
+      "question": "Tell me about a time when you had to overcome a significant professional setback.",
+      "category": "Resilience"
+    }
+  ]
+}

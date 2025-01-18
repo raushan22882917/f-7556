@@ -1,0 +1,32 @@
+.flow-node {
+    background: #f8f9fa;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #495057;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flow-node.completed {
+    background: #e9f7ef;
+    border-color: #28a745;
+    color: #155724;
+  }
+  
+  .react-flow__edge-path {
+    stroke-width: 2;
+  }
+  
+  .react-flow__controls-button {
+    color: #17a2b8;
+  }
+  
+  .react-flow__minimap-node {
+    fill: #007bff;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+  

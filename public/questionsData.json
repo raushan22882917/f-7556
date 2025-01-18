@@ -1,0 +1,42 @@
+{
+    "1": {
+      "topicName": "Arrays and Hashing",
+      "questions": [
+        {
+          "id": 1,
+          "title": "Two Sum",
+          "difficulty": "Easy",
+          "tags": ["Arrays", "Hash Table"]
+        },
+        {
+          "id": 2,
+          "title": "Maximum Subarray",
+          "difficulty": "Medium",
+          "tags": ["Arrays", "Dynamic Programming"]
+        }
+      ]
+    },
+    "2": {
+      "topicName": "Linked Lists",
+      "questions": [
+        {
+          "id": 3,
+          "title": "Reverse Linked List",
+          "difficulty": "Easy",
+          "tags": ["Linked List"]
+        }
+      ]
+    },
+    "3": {
+      "topicName": "Trees",
+      "questions": [
+        {
+          "id": 4,
+          "title": "Binary Tree Traversal",
+          "difficulty": "Medium",
+          "tags": ["Tree", "DFS"]
+        }
+      ]
+    }
+  }
+  

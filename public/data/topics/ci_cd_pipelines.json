@@ -1,0 +1,5 @@
+{
+    "title": "CI/CD Pipelines",
+    "content": "Continuous Integration and Continuous Delivery (CI/CD) pipelines are a series of automated steps that code goes through from development to production.\n\nKey Components:\n- Source Control Integration\n- Automated Building\n- Automated Testing\n- Deployment Automation\n- Environment Management\n\nBest Practices:\n1. Automate everything possible\n2. Maintain fast feedback loops\n3. Build once, deploy many times\n4. Keep pipelines simple and focused\n5. Implement proper security checks"
+  }
+  
