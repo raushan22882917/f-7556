@@ -9,30 +9,6 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      admin_users: {
-        Row: {
-          created_at: string
-          email_verified: boolean | null
-          id: string
-          role: Database["public"]["Enums"]["admin_role"]
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          email_verified?: boolean | null
-          id?: string
-          role?: Database["public"]["Enums"]["admin_role"]
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          email_verified?: boolean | null
-          id?: string
-          role?: Database["public"]["Enums"]["admin_role"]
-          user_id?: string | null
-        }
-        Relationships: []
-      }
       community_questions: {
         Row: {
           category: string
