@@ -14,18 +14,21 @@ export type Database = {
           created_at: string
           email_verified: boolean | null
           id: string
+          role: Database["public"]["Enums"]["admin_role"]
           user_id: string | null
         }
         Insert: {
           created_at?: string
           email_verified?: boolean | null
           id?: string
+          role?: Database["public"]["Enums"]["admin_role"]
           user_id?: string | null
         }
         Update: {
           created_at?: string
           email_verified?: boolean | null
           id?: string
+          role?: Database["public"]["Enums"]["admin_role"]
           user_id?: string | null
         }
         Relationships: []
@@ -779,7 +782,9 @@ export type Database = {
           created_at: string
           email: string | null
           id: string
+          level: string | null
           name: string | null
+          open_to_work: boolean | null
           profile_image_url: string | null
           resume_url: string | null
           updated_at: string
@@ -791,7 +796,9 @@ export type Database = {
           created_at?: string
           email?: string | null
           id: string
+          level?: string | null
           name?: string | null
+          open_to_work?: boolean | null
           profile_image_url?: string | null
           resume_url?: string | null
           updated_at?: string
@@ -803,7 +810,9 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
+          level?: string | null
           name?: string | null
+          open_to_work?: boolean | null
           profile_image_url?: string | null
           resume_url?: string | null
           updated_at?: string
@@ -1343,6 +1352,7 @@ export type Database = {
       }
     }
     Enums: {
+      admin_role: "super_admin" | "admin"
       subscription_type: "free" | "pro" | "enterprise"
     }
     CompositeTypes: {

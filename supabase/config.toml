@@ -1,7 +1,1 @@
 project_id = "fonzbkswaoqughxituyv"
-
-[functions.send-session-email]
-verify_jwt = false
-
-[functions.evaluate-submission]
-verify_jwt = false
