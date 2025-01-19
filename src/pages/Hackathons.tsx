@@ -1,22 +1,13 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import Calendar from "react-calendar";
-import { Trophy, Award, Users } from "lucide-react";
 import "react-calendar/dist/Calendar.css";
 import { Navbar } from "@/components/Navbar";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { format } from "date-fns";
+import { LeaderboardTable } from "@/components/hackathons/LeaderboardTable";
+import { HackathonList } from "@/components/hackathons/HackathonList";
+import { PastHackathonsTable } from "@/components/hackathons/PastHackathonsTable";
 
 interface Hackathon {
   id: string;
@@ -45,7 +36,6 @@ export default function Hackathons() {
   const [nearestHackathon, setNearestHackathon] = useState<Hackathon | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>("");
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchHackathons();
@@ -135,150 +125,6 @@ export default function Hackathons() {
     return null;
   };
 
-  const LeaderboardTable = () => (
-    <div className="rounded-md border backdrop-blur-sm bg-opacity-20 bg-black p-4">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-          <Trophy className="h-6 w-6 text-yellow-400" />
-          Today's Leaderboard
-        </h2>
-      </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-white">Rank</TableHead>
-            <TableHead className="text-white">Participant</TableHead>
-            <TableHead className="text-white">Score</TableHead>
-            <TableHead className="text-white">Problems Solved</TableHead>
-            <TableHead className="text-white">Time Spent</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {leaderboardData.map((entry) => (
-            <TableRow key={entry.rank} className={entry.rank <= 3 ? "bg-opacity-20 bg-yellow-500" : ""}>
-              <TableCell className="text-white font-medium">
-                {entry.rank <= 3 ? (
-                  <div className="flex items-center gap-2">
-                    <Award className={`h-5 w-5 ${
-                      entry.rank === 1 ? "text-yellow-400" :
-                      entry.rank === 2 ? "text-gray-400" :
-                      "text-amber-800"
-                    }`} />
-                    #{entry.rank}
-                  </div>
-                ) : (
-                  `#${entry.rank}`
-                )}
-              </TableCell>
-              <TableCell className="text-white">
-                <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  {entry.user_name}
-                </div>
-              </TableCell>
-              <TableCell className="text-white">{entry.score}</TableCell>
-              <TableCell className="text-white">{entry.solved_problems}</TableCell>
-              <TableCell className="text-white">{entry.time_spent}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
-  );
-
-  const HackathonList = ({ status }: { status: "upcoming" | "ongoing" }) => (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {hackathons
-        .filter((h) => h.status === status)
-        .map((hackathon) => (
-          <Card key={hackathon.id} className="hover:shadow-lg transition-shadow backdrop-blur-sm bg-opacity-20 bg-black">
-            {hackathon.banner_image_url && (
-              <div className="relative w-full h-32">
-                <img
-                  src={hackathon.banner_image_url}
-                  alt={hackathon.title}
-                  className="w-full h-full object-cover rounded-t-lg"
-                />
-              </div>
-            )}
-            <CardHeader>
-              <div className="flex items-center gap-4">
-                {hackathon.organization_image_url && (
-                  <img
-                    src={hackathon.organization_image_url}
-                    alt="Organization"
-                    className="w-10 h-10 rounded-full"
-                  />
-                )}
-                <CardTitle className="text-white">{hackathon.title}</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="text-white">
-              <p className="text-sm text-gray-300 mb-4">
-                {hackathon.description}
-              </p>
-              <div className="space-y-2">
-                <p className="text-sm">
-                  <strong>Start:</strong> {format(new Date(hackathon.start_date), "PPP")}
-                </p>
-                <p className="text-sm">
-                  <strong>End:</strong> {format(new Date(hackathon.end_date), "PPP")}
-                </p>
-                {hackathon.prize_money && (
-                  <p className="text-sm font-semibold">
-                    <strong>Prize Pool:</strong> ${hackathon.prize_money}
-                  </p>
-                )}
-              </div>
-              <Button
-                className="mt-4 w-full bg-blue-600 hover:bg-blue-700"
-                onClick={() => navigate(`/hackathons/${hackathon.id}`)}
-              >
-                View Details
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-    </div>
-  );
-
-  const PastHackathonsTable = () => (
-    <div className="rounded-md border backdrop-blur-sm bg-opacity-20 bg-black">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-white">Title</TableHead>
-            <TableHead className="text-white">Start Date</TableHead>
-            <TableHead className="text-white">End Date</TableHead>
-            <TableHead className="text-white">Prize Pool</TableHead>
-            <TableHead className="text-white">Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {hackathons
-            .filter((h) => h.status === "past")
-            .map((hackathon) => (
-              <TableRow key={hackathon.id}>
-                <TableCell className="text-white font-medium">{hackathon.title}</TableCell>
-                <TableCell className="text-white">{format(new Date(hackathon.start_date), "PPP")}</TableCell>
-                <TableCell className="text-white">{format(new Date(hackathon.end_date), "PPP")}</TableCell>
-                <TableCell className="text-white">${hackathon.prize_money || 0}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    onClick={() => navigate(`/hackathons/${hackathon.id}`)}
-                    className="text-white hover:text-black"
-                  >
-                    View Details
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </div>
-  );
-
   return (
     <div className="containers bg-transparent">
       <Navbar />
@@ -327,16 +173,16 @@ export default function Hackathons() {
           </TabsList>
 
           <TabsContent value="upcoming">
-            <HackathonList status="upcoming" />
+            <HackathonList hackathons={hackathons} status="upcoming" />
           </TabsContent>
           <TabsContent value="ongoing">
-            <HackathonList status="ongoing" />
+            <HackathonList hackathons={hackathons} status="ongoing" />
           </TabsContent>
           <TabsContent value="past">
-            <PastHackathonsTable />
+            <PastHackathonsTable hackathons={hackathons} />
           </TabsContent>
           <TabsContent value="leaderboard">
-            <LeaderboardTable />
+            <LeaderboardTable leaderboardData={leaderboardData} />
           </TabsContent>
         </Tabs>
       )}
