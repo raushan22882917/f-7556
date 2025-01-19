@@ -45,11 +45,10 @@ export function RecruiterSignupForm() {
     
     try {
       // First create the auth user
-      const { data: authData, error: signUpError } = await supabase.auth.signUp({
+      const { data: { user }, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
           data: {
             first_name: firstName,
             last_name: lastName,
@@ -61,17 +60,17 @@ export function RecruiterSignupForm() {
 
       if (signUpError) throw signUpError;
 
-      if (!authData.user) {
+      if (!user) {
         throw new Error("User creation failed");
       }
 
-      console.log("Auth user created successfully", authData.user.id);
+      console.log("Auth user created successfully", user.id);
 
       // Then create the recruiter profile
       const { error: profileError } = await supabase
         .from('recruiter_profiles')
         .insert({
-          id: authData.user.id,
+          id: user.id,
           first_name: firstName,
           last_name: lastName,
           email,
@@ -89,7 +88,7 @@ export function RecruiterSignupForm() {
 
       toast({
         title: "Success!",
-        description: "Please check your email to verify your account.",
+        description: "Please check your email to verify your account before logging in.",
       });
       
       navigate("/login");
