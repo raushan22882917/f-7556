@@ -9,6 +9,7 @@ interface Hackathon {
   start_date: string;
   end_date: string;
   prize_money?: number;
+  status: "upcoming" | "ongoing" | "past";
 }
 
 interface PastHackathonsTableProps {

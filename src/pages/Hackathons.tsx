@@ -51,7 +51,7 @@ export default function Hackathons() {
           score,
           time_spent,
           user_id,
-          profiles!hackathon_participants_user_id_fkey(name)
+          profiles:profiles!hackathon_participants_user_id_fkey(name)
         `)
         .order('score', { ascending: false })
         .limit(10);
