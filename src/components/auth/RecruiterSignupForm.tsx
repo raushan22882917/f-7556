@@ -44,11 +44,12 @@ export function RecruiterSignupForm() {
     setLoading(true);
     
     try {
-      // First create the auth user
+      // First create the auth user with email confirmation disabled for now
       const { data: authData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
           data: {
             first_name: firstName,
             last_name: lastName,
@@ -66,16 +67,7 @@ export function RecruiterSignupForm() {
 
       console.log("Auth user created successfully", authData.user.id);
 
-      // Get the session to ensure we have proper authentication
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-      
-      if (sessionError) throw sessionError;
-      
-      if (!session) {
-        throw new Error("No session available after signup");
-      }
-
-      // Then create the recruiter profile
+      // Create the recruiter profile immediately after user creation
       const { error: profileError } = await supabase
         .from('recruiter_profiles')
         .insert({
@@ -93,14 +85,12 @@ export function RecruiterSignupForm() {
 
       console.log("Recruiter profile created successfully");
 
-      // Sign out after successful creation since they need to verify email
-      await supabase.auth.signOut();
-
       toast({
         title: "Success!",
         description: "Please check your email to verify your account before logging in.",
       });
       
+      // Always redirect to login after successful signup
       navigate("/login");
     } catch (error: any) {
       console.error('Signup error:', error);
