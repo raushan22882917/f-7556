@@ -61,7 +61,7 @@ export default function Hackathons() {
           score,
           time_spent,
           user_id,
-          user:profiles!hackathon_participants_user_id_fkey(name)
+          profiles!hackathon_participants_user_id_fkey(name)
         `)
         .order('score', { ascending: false })
         .limit(10);
@@ -71,7 +71,7 @@ export default function Hackathons() {
       if (participantsData) {
         const formattedData: LeaderboardEntry[] = participantsData.map((entry, index) => ({
           rank: index + 1,
-          user_name: entry.user?.name || 'Anonymous',
+          user_name: entry.profiles?.name || 'Anonymous',
           score: entry.score || 0,
           solved_problems: Math.floor(Math.random() * 5) + 1,
           time_spent: `${Math.floor((entry.time_spent || 0) / 60)}h ${(entry.time_spent || 0) % 60}m`
