@@ -20,6 +20,7 @@ export function RecruiterSignupForm() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Starting recruiter signup process");
     
     if (password !== confirmPassword) {
       toast({
@@ -43,7 +44,8 @@ export function RecruiterSignupForm() {
     setLoading(true);
     
     try {
-      const { data: { user }, error: signUpError } = await supabase.auth.signUp({
+      // First create the auth user
+      const { data: authData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -59,23 +61,31 @@ export function RecruiterSignupForm() {
 
       if (signUpError) throw signUpError;
 
-      if (!user) {
+      if (!authData.user) {
         throw new Error("User creation failed");
       }
 
+      console.log("Auth user created successfully", authData.user.id);
+
+      // Then create the recruiter profile
       const { error: profileError } = await supabase
         .from('recruiter_profiles')
-        .insert([{
-          id: user.id,
+        .insert({
+          id: authData.user.id,
           first_name: firstName,
           last_name: lastName,
           email,
           phone_number: phoneNumber,
-        }])
-        .select()
-        .single();
+        });
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        console.error("Profile creation error:", profileError);
+        // If profile creation fails, we should clean up the auth user
+        await supabase.auth.signOut();
+        throw profileError;
+      }
+
+      console.log("Recruiter profile created successfully");
 
       toast({
         title: "Success!",
