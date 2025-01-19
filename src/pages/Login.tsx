@@ -9,11 +9,13 @@ import { Navbar } from "@/components/Navbar";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AuthError, AuthApiError } from "@supabase/supabase-js";
 import { useToast } from "@/components/ui/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Login() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("candidate");
 
   useEffect(() => {
     const {
@@ -88,7 +90,7 @@ export default function Login() {
       <Navbar />
 
       <div className="flex-grow flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <Card className="w-full max-w-sm shadow-lg border-none rounded-lg overflow-hidden">
+        <Card className="w-full max-w-md shadow-lg border-none rounded-lg overflow-hidden">
           <div className="flex flex-col justify-center bg-white dark:bg-gray-800 p-6 rounded-lg">
             <CardContent>
               <CardHeader className="text-center mb-6">
@@ -103,27 +105,60 @@ export default function Login() {
                 </Alert>
               )}
 
-              <Auth
-                supabaseClient={supabase}
-                appearance={{
-                  theme: ThemeSupa,
-                  variables: {
-                    default: {
-                      colors: {
-                        brand: "#7c3aed",
-                        brandAccent: "#6366f1",
+              <Tabs defaultValue="candidate" className="w-full" onValueChange={setActiveTab}>
+                <TabsList className="grid w-full grid-cols-2 mb-6">
+                  <TabsTrigger value="candidate">Candidate</TabsTrigger>
+                  <TabsTrigger value="recruiter">Recruiter</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="candidate">
+                  <Auth
+                    supabaseClient={supabase}
+                    appearance={{
+                      theme: ThemeSupa,
+                      variables: {
+                        default: {
+                          colors: {
+                            brand: "#7c3aed",
+                            brandAccent: "#6366f1",
+                          },
+                        },
                       },
-                    },
-                  },
-                  className: {
-                    container: "w-full",
-                    button: "w-full py-3 px-6 text-sm rounded-lg shadow-md transition-all text-white font-medium hover:bg-purple-700 focus:ring-2 focus:ring-purple-600",
-                  },
-                }}
-                providers={["google", "github"]}
-                view="sign_in"
-                redirectTo={`${window.location.origin}/auth/callback`}
-              />
+                      className: {
+                        container: "w-full",
+                        button: "w-full py-3 px-6 text-sm rounded-lg shadow-md transition-all text-white font-medium hover:bg-purple-700 focus:ring-2 focus:ring-purple-600",
+                      },
+                    }}
+                    providers={["google", "github"]}
+                    view="sign_in"
+                    redirectTo={`${window.location.origin}/auth/callback`}
+                  />
+                </TabsContent>
+
+                <TabsContent value="recruiter">
+                  <Auth
+                    supabaseClient={supabase}
+                    appearance={{
+                      theme: ThemeSupa,
+                      variables: {
+                        default: {
+                          colors: {
+                            brand: "#2563eb",
+                            brandAccent: "#1d4ed8",
+                          },
+                        },
+                      },
+                      className: {
+                        container: "w-full",
+                        button: "w-full py-3 px-6 text-sm rounded-lg shadow-md transition-all text-white font-medium hover:bg-blue-700 focus:ring-2 focus:ring-blue-600",
+                      },
+                    }}
+                    providers={[]}
+                    view="sign_in"
+                    redirectTo={`${window.location.origin}/auth/callback`}
+                  />
+                </TabsContent>
+              </Tabs>
 
               <div className="mt-4 text-center">
                 <Button

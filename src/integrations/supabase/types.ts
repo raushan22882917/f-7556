@@ -806,6 +806,7 @@ export type Database = {
           profile_image_url: string | null
           resume_url: string | null
           updated_at: string
+          user_type: string | null
         }
         Insert: {
           badges?: Json[] | null
@@ -820,6 +821,7 @@ export type Database = {
           profile_image_url?: string | null
           resume_url?: string | null
           updated_at?: string
+          user_type?: string | null
         }
         Update: {
           badges?: Json[] | null
@@ -834,6 +836,7 @@ export type Database = {
           profile_image_url?: string | null
           resume_url?: string | null
           updated_at?: string
+          user_type?: string | null
         }
         Relationships: []
       }
@@ -923,6 +926,36 @@ export type Database = {
           examples?: Json
           id?: string
           title?: string
+        }
+        Relationships: []
+      }
+      recruiter_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone_number: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone_number: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone_number?: string
+          updated_at?: string
         }
         Relationships: []
       }
