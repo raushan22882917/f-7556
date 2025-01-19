@@ -61,9 +61,7 @@ export default function Hackathons() {
           score,
           time_spent,
           user_id,
-          profiles!inner (
-            name
-          )
+          profiles:profiles(name)
         `)
         .order('score', { ascending: false })
         .limit(10);

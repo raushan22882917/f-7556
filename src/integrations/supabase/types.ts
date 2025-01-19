@@ -460,6 +460,48 @@ export type Database = {
         }
         Relationships: []
       }
+      jobs: {
+        Row: {
+          company_logo_url: string | null
+          company_name: string
+          created_at: string | null
+          description: string
+          id: string
+          job_title: string
+          job_type: string
+          location: string
+          posted_at: string | null
+          requirements: string[] | null
+          salary_range: string | null
+        }
+        Insert: {
+          company_logo_url?: string | null
+          company_name: string
+          created_at?: string | null
+          description: string
+          id?: string
+          job_title: string
+          job_type: string
+          location: string
+          posted_at?: string | null
+          requirements?: string[] | null
+          salary_range?: string | null
+        }
+        Update: {
+          company_logo_url?: string | null
+          company_name?: string
+          created_at?: string | null
+          description?: string
+          id?: string
+          job_title?: string
+          job_type?: string
+          location?: string
+          posted_at?: string | null
+          requirements?: string[] | null
+          salary_range?: string | null
+        }
+        Relationships: []
+      }
       mentor_bookings: {
         Row: {
           booking_date: string
