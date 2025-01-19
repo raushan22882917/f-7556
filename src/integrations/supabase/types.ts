@@ -929,6 +929,58 @@ export type Database = {
         }
         Relationships: []
       }
+      recruiter_dashboard_stats: {
+        Row: {
+          active_job_posts: number | null
+          created_at: string | null
+          id: string
+          recruiter_id: string | null
+          total_applications: number | null
+          total_job_posts: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          active_job_posts?: number | null
+          created_at?: string | null
+          id?: string
+          recruiter_id?: string | null
+          total_applications?: number | null
+          total_job_posts?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          active_job_posts?: number | null
+          created_at?: string | null
+          id?: string
+          recruiter_id?: string | null
+          total_applications?: number | null
+          total_job_posts?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recruiter_dashboard_stats_recruiter_id_fkey"
+            columns: ["recruiter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recruiter_dashboard_stats_recruiter_id_fkey"
+            columns: ["recruiter_id"]
+            isOneToOne: false
+            referencedRelation: "user_activity_stats"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recruiter_dashboard_stats_recruiter_id_fkey"
+            columns: ["recruiter_id"]
+            isOneToOne: false
+            referencedRelation: "user_statistics"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       recruiter_profiles: {
         Row: {
           created_at: string
