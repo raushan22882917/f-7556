@@ -40,6 +40,7 @@ import Hackathons from "./pages/Hackathons";
 import HackathonDetails from "./pages/HackathonDetails";
 import Contact from "./pages/Contact";
 import ArticlePage from "./pages/ArticlePage";
+import Jobs from "./pages/Jobs";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -205,7 +206,8 @@ const App = () => {
                       } 
                     />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/article/:id" element={<ArticlePage />} /> {/* New Route for ArticlePage */}
+                    <Route path="/article/:id" element={<ArticlePage />} />
+                    <Route path="/jobs" element={<Jobs />} />
                   </Routes>
                 </main>
               </div>
