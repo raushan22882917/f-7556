@@ -45,7 +45,7 @@ export function RecruiterSignupForm() {
     
     try {
       // First create the auth user
-      const { data: { user }, error: signUpError } = await supabase.auth.signUp({
+      const { data: authData, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -60,17 +60,26 @@ export function RecruiterSignupForm() {
 
       if (signUpError) throw signUpError;
 
-      if (!user) {
+      if (!authData.user) {
         throw new Error("User creation failed");
       }
 
-      console.log("Auth user created successfully", user.id);
+      console.log("Auth user created successfully", authData.user.id);
+
+      // Get the session to ensure we have proper authentication
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError) throw sessionError;
+      
+      if (!session) {
+        throw new Error("No session available after signup");
+      }
 
       // Then create the recruiter profile
       const { error: profileError } = await supabase
         .from('recruiter_profiles')
         .insert({
-          id: user.id,
+          id: authData.user.id,
           first_name: firstName,
           last_name: lastName,
           email,
@@ -79,12 +88,13 @@ export function RecruiterSignupForm() {
 
       if (profileError) {
         console.error("Profile creation error:", profileError);
-        // If profile creation fails, we should clean up the auth user
-        await supabase.auth.signOut();
         throw profileError;
       }
 
       console.log("Recruiter profile created successfully");
+
+      // Sign out after successful creation since they need to verify email
+      await supabase.auth.signOut();
 
       toast({
         title: "Success!",
